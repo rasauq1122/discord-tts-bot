@@ -3,11 +3,18 @@ const { Client, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+	intents: ['DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILDS']
+});
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
+});
+
+client.on('messageCreate', msg => {
+	console.log(msg.content);
 });
 
 // Login to Discord with your client's token
