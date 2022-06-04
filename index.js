@@ -17,5 +17,8 @@ client.on('messageCreate', msg => {
 	console.log(msg.content);
 });
 
+client.on("voiceStateUpdate", (oldState, newState) => {
+	console.log("check");
+});
 // Login to Discord with your client's token
 client.login(token);
